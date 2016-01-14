@@ -18,8 +18,6 @@ class Menu {
   constructor() {
     this.clearConsole();
     this.displayHeader();
-
-    this.player = new Player();
   }
 
   displayBanner() {

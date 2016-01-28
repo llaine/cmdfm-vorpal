@@ -1,11 +1,20 @@
 import store from './store';
-import * as actions from './actions';
+import Api from './api';
 
-console.log(store.getState());
+Api.getSongsFromStyle('Dub');
 
-let unsubscribe = store.subscribe(() =>
-    console.log(store.getState())
-);
 
-store.dispatch({type: actions.LOAD_PLAYLIST_REQUEST, playlistName:'test'});
-store.dispatch({type: actions.LOAD_PLAYLIST_REQUEST, playlistName:'23'});
+function getResponse(state) {
+  return JSON.parse(state.response);
+}
+
+function displayChanges() {
+  let songs = getResponse(store.getState());
+
+  if(songs) {
+    console.log(songs);
+  }
+}
+
+store.subscribe(displayChanges);
+
